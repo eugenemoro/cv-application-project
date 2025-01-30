@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -26,7 +33,6 @@ body {
   margin: 0 auto;
   width: 100%;
   max-width: 850px;
-  display: flex;
   min-height: 100vh;
 }
 
@@ -39,7 +45,7 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
@@ -56,14 +62,56 @@ button:focus-visible {
 
 .container {
   min-width: 100%;
-}
-
-div[class*="section"] {
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 div[class*="section"]:not(:first-child) {
   border-top: 2px rgba(255, 255, 255, 0.87) solid;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  border: .5px rgba(255, 255, 255, 0.87) solid;
+  padding: .5rem;
+  margin-bottom: 1rem;
+  input {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    width: 10rem;
+  }
+  textarea {
+    margin-left: 1rem;
+    width: 10rem;
+    resize: none;
+  }
+}
+
+.form-buttons,
+.element-buttons {
+  margin-top: .5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  border: .5px rgba(255, 255, 255, 0.87) solid;
+  padding: .5rem;
+  margin-bottom: 1rem;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem
 }
 
 @media (prefers-color-scheme: light) {

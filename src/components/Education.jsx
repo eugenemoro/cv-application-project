@@ -40,12 +40,14 @@ export default function Education({educationList, setEducationList}) {
 
   function renderEducationItem(education) {
     return (
-      <div className="educationItem" key={education.id}>
+      <div className="educationItem card" key={education.id}>
         <p>School: {education.school}</p>
         <p>Field of Study: {education.fieldOfStudy}</p>
         <p>Graduation Date: {education.graduationDate}</p>
-        <button onClick={() => editEducationInit(education)}>Edit</button>
-        <button onClick={() => deleteEducation(education)}>Delete</button>
+        <div className="element-buttons">
+          <button onClick={() => editEducationInit(education)}>Edit</button>
+          <button onClick={() => deleteEducation(education)}>Delete</button>
+        </div>
       </div>
     );
   } 
@@ -83,8 +85,10 @@ export default function Education({educationList, setEducationList}) {
                 defaultValue={education.graduationDate}
               />
             </label>
-            <button type="submit">Save</button>
-            <button onClick={changeMode}>Cancel</button>
+            <div className="form-buttons">
+              <button type="submit">Save</button>
+              <button onClick={changeMode}>Cancel</button>
+            </div>
           </form>
       </div>
     );
@@ -92,13 +96,17 @@ export default function Education({educationList, setEducationList}) {
 
   return (
     <div className="education-section">
-      <h2>Education</h2>
-      <button onClick={changeMode}>Add new</button>
-      {editMode && editEducation(itemToEdit)}
-      {educationList
-        .sort((a, b) => a.id - b.id)
-        .map((education) => renderEducationItem(education))
-      }
+      <div className="title">
+        <h2>Education</h2>
+        {editMode ? <></> : <button onClick={changeMode}>Add new</button>}
+      </div>
+      <div className="card-container">
+        {editMode && editEducation(itemToEdit)}
+        {educationList
+          .sort((a, b) => a.id - b.id)
+          .map((education) => renderEducationItem(education))
+        }
+      </div>
     </div>
   );
 }

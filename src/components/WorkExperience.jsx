@@ -40,14 +40,16 @@ export default function WorkExperience({experienceList, setExperienceList}) {
 
   function renderExperienceItem(experience) {
     return (
-      <div className="experienceItem" key={experience.id}>
+      <div className="experienceItem card" key={experience.id}>
         <p>Position title: {experience.position}</p>
         <p>Company: {experience.company}</p>
         <p>Responsibilities: {experience.responsibilities}</p>
         <p>Start date: {experience.startDate}</p>
         <p>End date: {experience.endDate}</p>
-        <button onClick={() => editExperienceInit(experience)}>Edit</button>
-        <button onClick={() => deleteExperience(experience)}>Delete</button>
+        <div className="element-buttons">
+          <button onClick={() => editExperienceInit(experience)}>Edit</button>
+          <button onClick={() => deleteExperience(experience)}>Delete</button>
+        </div>
       </div>
     );
   } 
@@ -99,8 +101,10 @@ export default function WorkExperience({experienceList, setExperienceList}) {
                 defaultValue={experience.endDate}
               />
             </label>
-            <button type="submit">Save</button>
-            <button onClick={changeMode}>Cancel</button>
+            <div className="form-buttons">
+              <button type="submit">Save</button>
+              <button onClick={changeMode}>Cancel</button>
+            </div>
           </form>
       </div>
     );
@@ -108,13 +112,17 @@ export default function WorkExperience({experienceList, setExperienceList}) {
 
   return (
     <div className="experience-section">
-      <h2>Work Experience</h2>
-      <button onClick={changeMode}>Add new</button>
-      {editMode && editExperience(itemToEdit)}
-      {experienceList
-        .sort((a, b) => a.id - b.id)
-        .map((experience) => renderExperienceItem(experience))
-      }
+      <div className="title">
+        <h2>Work Experience</h2>
+        {editMode ? <></> : <button onClick={changeMode}>Add new</button>}
+      </div>
+      <div className="card-container">
+        {editMode && editExperience(itemToEdit)}
+        {experienceList
+          .sort((a, b) => a.id - b.id)
+          .map((experience) => renderExperienceItem(experience))
+        }
+      </div>
     </div>
   );
 }
